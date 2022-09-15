@@ -1,0 +1,61 @@
+import numpy as np
+
+# Pedir la info al usuario
+d= int(input ("Por favor ingresa la dimensión deseada de la matriz, debe de ser dentro de un rango de 3 a 10: "))
+if d < 3:
+    d = int (input ("La dimensión debe de ser mayor a 3, intentalo de nuevo."))
+if d >10:
+    print ("La dimensión no puede ser mayor a 10, intentalo de nuevo.")
+else:
+    print ("La dimensión es aceptada.")
+
+# Números primos
+NP=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
+         101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199,
+         211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293,
+         307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397,
+         401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499,
+         503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599,
+         601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691,
+         701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797,
+         809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887,
+         907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997]
+
+# Dejar matriz en ceros
+m=np.zeros((d,d))
+
+# Contar las lineas de la matriz
+cont=0
+for i in range (d):
+    for j in range (d):
+        m[i][j]=NP[cont]
+        cont=cont+1
+
+# Realizar la suma de la diagonal mayor
+diagonal=0
+linea=0
+for i in range(0,d):
+    for j in range (0,(d-linea)):
+        diagonal= diagonal + m[i][j+linea]
+    linea=linea+1
+
+# Imprimir la matriz línea por línea
+a=""
+for i in range (0,d):
+    for j in range (0,d):
+        a = a + str (int(m[i][j]))
+        if m [i][j]<10:
+            a = a+ "      "
+        elif m [i][j]>10 and m [i][j]<100:
+            a = a+ "      "
+        elif m [i][j]>100 and m [i][j]<1000:
+            a = a+ "      "
+        elif m [i][j]>1000 and m [i][j]<10000:
+            a = a+ "      "
+    a=a+"\n"
+
+# Imprimir la matriz
+print (a)
+
+# Imprimir la suma de la diagonal
+print (f"La suma es: {diagonal}")
